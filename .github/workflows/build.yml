@@ -7,6 +7,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Unpack project zip
+        shell: pwsh
+        run: if (!(Test-Path package.json)) { Expand-Archive -Path SL_Workshop_exe_github.zip -DestinationPath . -Force }
       - uses: actions/setup-node@v4
         with:
           node-version: 20
